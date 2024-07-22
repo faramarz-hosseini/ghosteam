@@ -8,7 +8,8 @@ import (
 )
 
 type Ghosteam struct {
-	iSteamUser *interfaces.SteamUser
+	iSteamUser   *interfaces.SteamUser
+	iEconService *interfaces.EconService
 }
 
 func NewClient(apiKey string) *Ghosteam {
@@ -18,10 +19,15 @@ func NewClient(apiKey string) *Ghosteam {
 		apiKey,
 	)
 	return &Ghosteam{
-		iSteamUser: &interfaces.SteamUser{Base: baseSteamInterface},
+		iSteamUser:   &interfaces.SteamUser{Base: baseSteamInterface},
+		iEconService: &interfaces.EconService{Base: baseSteamInterface},
 	}
 }
 
 func (g *Ghosteam) ISteamUser() *interfaces.SteamUser {
 	return g.iSteamUser
+}
+
+func (g *Ghosteam) IEconService() *interfaces.EconService {
+	return g.iEconService
 }
